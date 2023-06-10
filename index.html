@@ -1,0 +1,99 @@
+<DOCTYPE html>
+<html>
+<head>
+    <title>Captcha Example</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        #captcha {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #captcha-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #captcha {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            height: 10%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        #captcha h2 {
+            margin-top: 0;
+        }
+        #captcha img {
+            margin-bottom: 20px;
+        }
+        #captcha input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 16px;
+            width: 100px;
+            text-align: center;
+        }
+        #captcha button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #captcha .success {
+            color: green;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="captcha">
+    <label for="captcha-input">Сколько вам лет</label>
+    <input type="text" id="captcha-input">
+    <button id="captcha-button">Submit</button>
+</div>
+
+<script type="text/javascript">
+    var captchaButton = document.getElementById("captcha-button");
+    var captchaInput = document.getElementById("captcha-input");
+    var captchaDiv = document.getElementById("captcha");
+
+    captchaButton.addEventListener("click", function(){
+        if(captchaInput.value == "73") {
+            var video = document.createElement("iframe");
+            video.setAttribute("src", "https://www.youtube.com/embed/M1OgLrP_-TQ");
+            video.setAttribute("width", "560");
+            video.setAttribute("height", "315");
+            video.setAttribute("frameborder", "0");
+            video.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+            video.setAttribute("allowfullscreen", "");
+            video.setAttribute("id", "captcha-video");
+            document.body.appendChild(video);
+            captchaDiv.style.display = "none";
+        } else {
+            alert("Incorrect captcha. Please try again.");
+        }
+    });
+</script>
+</body>
+</html>
